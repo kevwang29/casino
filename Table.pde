@@ -11,9 +11,11 @@ public class Table extends Objects{
   Rectangle surface = new Rectangle(tableTopLength, tableTopWidth, tableTopHeight);
   Rectangle leg1 = new Rectangle(legLength, legWidth, legHeight);
   Rectangle leg2 = new Rectangle(legLength, legWidth, legHeight);
+  PVector myLocation;
   private ArrayList<Objects> myObjects;
   
-  public Table(){
+  public Table(PVector location){
+    myLocation = location;
     myObjects = new ArrayList<Objects>();
     myObjects.add(surface);
     myObjects.add(leg1);
@@ -22,15 +24,15 @@ public class Table extends Objects{
 
   public void toDraw(float t) {
     pushMatrix();
-    //translate(-25, 10, -25);
+    translate(myLocation.x, myLocation.y, myLocation.z);
     surface.setTexture(3, "./data/blackjacktable1.jpg", 3);
     fill(9, 79, 97);
     surface.toDraw(t);
     translate((tableTopLength - legLength)/8, tableTopWidth, (tableTopHeight-legHeight)/2);
-    fill(99, 99, 99);
+    fill(133,94,66);
     leg1.toDraw(t);
     translate(6*((tableTopLength-legLength)/8), 0, 0);
-    fill(99, 99, 99);
+    fill(133,94,66);
     leg2.toDraw(t);
     popMatrix();
     

@@ -9,9 +9,14 @@ public class Card extends Objects{
   float resistance = 5;
   boolean hitDeck= false;
   boolean debug = true;
+  
+  int mySuit;
+  int myValue;
 
-  public Card(PVector location) {
+  public Card(PVector location, int suit, int value) {
     myLocation = location;
+    mySuit = suit;
+    myValue = value;
   }
 
   public void toDraw(float t) {
@@ -35,7 +40,7 @@ public class Card extends Objects{
   public void renderCard(float t) {
     pushMatrix();
     translate(myLocation.x, myLocation.y, myLocation.z);
-    myCard.setTexture(3, "./data/cards/clubs-2-150.jpg", 1);
+    myCard.setTexture(3, String.format("./data/cards/%s-%s-150.jpg", mySuit, myValue+1), 1);
     myCard.setTexture(2, "./data/cards/back-blue-150-1.jpg", 1);
     myCard.toDraw(t);
     popMatrix();

@@ -1,7 +1,7 @@
 public class MyCamera {
   PVector myLocation;
   PVector myDirection;
-  float theta = PI/2;
+  float theta = 0;
   float phi = 0;
   float myRadius;
   public float myMouseX=0;
@@ -16,8 +16,24 @@ public class MyCamera {
   public void setCamera(){
     PVector pCenter = calculateCenterCoordiates();
     camera( myLocation.x, myLocation.y, myLocation.z, pCenter.x, pCenter.y, pCenter.z, 0, 1, 0);
+    //camera( pCenter.x, pCenter.y, pCenter.z,myLocation.x, myLocation.y, myLocation.z,  0, 1, 0);
+    /*
+    rotateY(theta);
+    //rotateX(phi);
+    float distance = sqrt(sq(myLocation.x)+sq(myLocation.z));
+    float angle = atan(myLocation.z/myLocation.x);
+    
+    translate(-cos(angle-theta)*distance, -myLocation.y, -sin(angle-theta)*distance);
+    
+    
+    */
+   
+    
     if(debug){
-      println(myLocation);
+      //println(myLocation);
+      //println(theta);
+      //println(distance);
+      //println(angle);
       println(pCenter);
     }
   }
