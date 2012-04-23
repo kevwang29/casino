@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<world>
+  <room>
+  	<name>Room</name>
+    <location>0 0 0</location>
+    <dimensions>800 500 1000</dimensions>
+  </room>
+
+  <camera>
+    <location>440 350 400</location>
+    <radius>10</radius>
+    <theta>0</theta>
+    <phi>0</phi>
+  </camera>
+
+  <table>
+  	<location>300 430 300</location>
+  	<name>table1</name>
+  </table>
+  
+  <card_dealer>
+  	<location>390 420 310</location>
+  	<speed>0 -100 150</speed>
+  	<height>429.9</height>
+  	<name>player</name>
+  </card_dealer>
+
+  <card_dealer>
+  	<location>390 420 310</location>
+  	<speed>0 -50 -10</speed>
+  	<height>429.9</height>
+  	<name>house</name>
+  </card_dealer>
+</world>

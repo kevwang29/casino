@@ -2,8 +2,10 @@ public class Room extends Objects {
 
   Rectangle myRoom = new Rectangle(800, 500, 1000);
   PVector myLocation;
-  public Room(PVector location) {
+  public Room(PVector location, PVector dimensions, String name) {
+    super(name);
     myLocation = location;
+    myRoom = new Rectangle(dimensions.x, dimensions.y, dimensions.z);
     for(int i=0; i<6; i++){
       //myRoom.setTexture(i, "./data/skyImage.jpeg", 1);
     }
@@ -15,11 +17,11 @@ public class Room extends Objects {
   }
 
   public PVector myLocation() {
-    return myCard.myLocation();
+    return myRoom.myLocation();
   }
 
   public PVector myDimensions() {
-    return myCard.myDimensions();
+    return myRoom.myDimensions();
   }
 
   public void updateLastRenderedLocation() {
@@ -27,7 +29,7 @@ public class Room extends Objects {
   }
 
   public PVector[] getEnclosedBoxRange() {
-    return myCard.getEnclosedBoxRange();
+    return myRoom.getEnclosedBoxRange();
   }
 
   public void updateEnclosedBoxRange() {

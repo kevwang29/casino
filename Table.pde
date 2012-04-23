@@ -14,7 +14,8 @@ public class Table extends Objects{
   PVector myLocation;
   private ArrayList<Objects> myObjects;
   
-  public Table(PVector location){
+  public Table(PVector location, String name){
+    super(name);
     myLocation = location;
     myObjects = new ArrayList<Objects>();
     myObjects.add(surface);

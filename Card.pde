@@ -13,7 +13,8 @@ public class Card extends Objects{
   int mySuit;
   int myValue;
 
-  public Card(PVector location, int suit, int value) {
+  public Card(PVector location, int suit, int value, String name) {
+    super(name);
     myLocation = location;
     mySuit = suit;
     myValue = value;

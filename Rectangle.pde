@@ -11,10 +11,13 @@ public class Rectangle extends Objects
   int[][] myFaces;
   boolean debug = false;
 
-
+  public Rectangle(){
+    this(1,1,1, new PVector()); 
+  }
 
   public Rectangle(float rectLength, float rectWidth, float rectHeight, PVector location)
   {
+    super("");
     myLength = rectLength;
     myWidth = rectWidth;
     myHeight = rectHeight;

@@ -1,16 +1,19 @@
 public class MyCamera {
   PVector myLocation;
   PVector myDirection;
-  float theta = 0;
-  float phi = 0;
+  float theta;
+  float phi;
   float myRadius;
   public float myMouseX=0;
   public float myMouseY=0;
   private boolean debug = false;
 
-  public MyCamera(PVector location, float r) {
+  public MyCamera(PVector location, float r, float theta, float phi) {
     myLocation = location;
     myRadius = r;
+    this.theta = theta;
+    this.phi = phi;
+    
   }
 
   public void setCamera(){

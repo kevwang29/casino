@@ -9,47 +9,40 @@ Table myTable;
 Room myRoom;
 boolean debug = false;
 private ArrayList<Objects> myObjects = new ArrayList<Objects>();
-//TableTop myTableTop;
-MyCamera myCamera = new MyCamera( new PVector(440, 350, 400), 10);//
+MyCamera myCamera;// = new MyCamera( new PVector(440, 350, 400), 10, 0, 0);//
 CardDealer myCardDealer, opponentCardDealer;
+String OBJECT_FILE_NAME = "room.xml";
+
+XMLParser myXMLParser = new XMLParser();
 
 void setup() 
 {
   size(1000, 800, P3D);
-  myCard = new Card(new PVector(440, 420, 345), 2, 3);
-  myGrid = new Grid(1000, 500);
-  myRoom = new Room(new PVector(0, 0, 0));
-  myTable = new Table(new PVector(300, 500-70, 300));
-  myCardDealer = new CardDealer(new PVector(390, 420, 310), new PVector( 0, -100, 150), 429.9);
-  opponentCardDealer = new CardDealer(new PVector(390, 420, 310), new PVector( 0, -50, -10), 429.9);
-  myObjects.add(myCard);
-  myObjects.add(myTable);
+  myXMLParser.read(new XMLElement(this, OBJECT_FILE_NAME));
+  for (Objects o : myXMLParser.getObjects().values()) {
+    myObjects.add(o);
+  }
+  myCamera = myXMLParser.getCamera();
+  //myGrid = new Grid(1000, 500);
+  //myTable = new Table(new PVector(300, 500-70, 300));
+  //myCardDealer = new CardDealer(new PVector(390, 420, 310), new PVector( 0, -100, 150), 429.9);
+  //opponentCardDealer = new CardDealer(new PVector(390, 420, 310), new PVector( 0, -50, -10), 429.9);
+  //myObjects.add(myCard);
+  //myObjects.add(myTable);
   //myTableTop = new TableTop();
 }
 
 void draw() 
 {
-  camera();
   myCamera.setCamera();
-  float t = millis();
-  background(0);
-  //noStroke();
-  fill(100);
-  //translate(width/2.0, height/2.0, 0);
-  myRoom.toDraw(t);
-  
-  //myGrid.toDraw();
-  myTable.toDraw(t);
-  myCardDealer.renderCards(t); 
-   opponentCardDealer.renderCards(t); 
-  //r.addRotateY(1*t);
-  //r.setTexture(0, "./data/cards.png", 1);
-  //r.setTexture(5, "./data/cards/clubs-2-150.jpg", 1);
-  //r.setTexture(2, "./data/cards/back-blue-75-3.png", 1);
-  //r.toDraw();
 
-  myCard.toDraw(t);
-  //myTableTop.toDraw(millis());
+  float t = millis();
+
+  background(0);
+  fill(100);
+  for (Objects o : myObjects) {
+    o.toDraw(t);
+  }
 }
 
 void keyPressed ()
@@ -71,11 +64,11 @@ void keyPressed ()
     break;
   case '1':
     //myCard.toDealCard(millis(), 429.9, new PVector( -100, -130, 50));
-    myCardDealer.generateCard();
+    myObjects.add(myXMLParser.getCardDealers().get("player").generateCard());
     break;
   case '2':
     //myCard.toDealCard(millis(), 429.9, new PVector( -100, -130, 50));
-    opponentCardDealer.generateCard();
+    myObjects.add(myXMLParser.getCardDealers().get("house").generateCard());
     break;
   case 'r':
     myCamera.moveUp(20);
@@ -139,8 +132,14 @@ void mouseDragged() {
 }
 
 void getObjectData() {
+  println("myObjects size is ");
+  println(myObjects.size());
+  
   for (Objects o : myObjects) {
+    if(!(o == null)){
     PVector[] ranges = o.getEnclosedBoxRange();
+    println("name");
+    println(o.getName());
     println("myLocation");
     println(o.myLocation());
     println("myDimensions");
@@ -149,11 +148,7 @@ void getObjectData() {
     println(ranges[0]);
     println(ranges[1]);
     println();
+    }
   }
-
-  println("camera location");
-  println(myCamera.getLocation());
-
-  println(myTable.myLocation().y-myTable.myDimensions().y-myCard.myDimensions().y);
 }
 

@@ -1,5 +1,9 @@
 public abstract class Objects{
  public float minX, minY, minZ, maxX, maxY, maxZ;
+ public String myName;
+ public Objects(String name){
+   myName = name;
+ }
   
  public PVector myLastRenderedLocation;
  
@@ -18,6 +22,10 @@ public abstract class Objects{
  
  public PVector[] getEnclosedBoxRange(){
      return new PVector[]{ new PVector(minX, minY, minZ), new PVector(maxX, maxY, maxZ)}; 
+  }
+  
+  public String getName(){
+    return myName;
   }
   
   
